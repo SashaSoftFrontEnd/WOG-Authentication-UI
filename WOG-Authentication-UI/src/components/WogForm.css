@@ -1,0 +1,262 @@
+/* =========================
+      WOG BRAND VARIABLES
+========================= */
+:root {
+  --wog-green: #009639;
+  --wog-green-dark: #006b2d;
+  --wog-lime: #c6d300;
+
+  --color-bg: #f4f4f4;
+  --color-black: #1b1b1b;
+  --color-white: #ffffff;
+
+  --color-error: #ff3b30;
+  --color-success: #2ecc71;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+
+  --transition-fast: 0.15s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.45s;
+
+  --shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.14);
+}
+
+/* =========================
+      BASE
+========================= */
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--color-bg);
+  color: var(--color-black);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.page__container {
+  max-width: 500px;
+  width: 100%;
+}
+
+/* =========================
+      FORM CARD
+========================= */
+.registration-form {
+  padding: 32px;
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  transition: 0.3s;
+}
+
+.registration-form:hover {
+  box-shadow: var(--shadow-strong);
+  transform: translateY(-4px);
+}
+
+.registration-form__title {
+  margin-bottom: 32px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--wog-green-dark);
+}
+
+/* =========================
+      BUTTON
+========================= */
+.registration-form__button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, var(--wog-green), var(--wog-lime));
+  color: var(--color-black);
+  transition: 0.25s;
+}
+
+.registration-form__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+}
+
+.button-success {
+  background: var(--color-success) !important;
+  color: white !important;
+}
+
+/* =========================
+      FOOTER
+========================= */
+.registration-form__footer {
+  margin-top: 18px;
+  text-align: center;
+  color: #555;
+}
+
+.registration-form__link {
+  color: var(--wog-green-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.registration-form__link:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+      FORM FIELD
+========================= */
+.form-field {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+/* FIXED WIDTH */
+.form-field__input {
+  max-width: 100%;
+  width: 400px;
+  padding: 16px 14px;
+  margin: 0 auto;
+  font-size: 1rem;
+  font-weight: 400;
+  border: 2px solid #e5e5e5;
+  border-radius: var(--radius-sm);
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.form-field__input::placeholder {
+  color: transparent;
+}
+
+.form-field__input:hover:not(:focus) {
+  border-color: #ccc;
+}
+
+.form-field__input:focus {
+  border-color: var(--wog-green);
+  background: var(--color-white);
+  box-shadow: 0 0 0 4px rgba(0, 150, 57, 0.18);
+}
+
+/* =========================
+      CLEAR BUTTON (✕)
+========================= */
+.clear-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #777;
+  opacity: 0.6;
+  transition: 0.2s ease;
+}
+
+.clear-button:hover {
+  opacity: 1;
+  color: #333;
+}
+
+/* =========================
+      FLOAT LABEL (smooth)
+========================= */
+.form-field__label--float {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #888;
+  pointer-events: none;
+  padding: 0 6px;
+
+  transition:
+    top 0.45s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1),
+    font-size 0.45s cubic-bezier(0.25, 0.1, 0.25, 1),
+    color 0.3s ease,
+    background 0.3s ease;
+}
+
+.float-active {
+  top: -9px;
+  font-size: 0.75rem;
+  transform: translateY(0);
+  background: var(--color-white);
+  color: #777;
+}
+
+/* =========================
+      SUCCESS / ERROR
+========================= */
+.is-success {
+  border-color: var(--color-success) !important;
+  box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.2) !important;
+}
+
+.label-success {
+  color: var(--color-success) !important;
+}
+
+.is-error {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 4px rgba(255, 59, 48, 0.2) !important;
+  animation: shake 0.25s ease-in-out;
+}
+
+.label-error {
+  color: var(--color-error) !important;
+}
+
+.form-field__error {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--color-error);
+}
+
+/* =========================
+      SHAKE ANIMATION
+========================= */
+@keyframes shake {
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+}
+
+/* =========================
+      RESPONSIVE
+========================= */
+@media (max-width: 480px) {
+  .registration-form {
+    padding: 22px;
+  }
+  .registration-form__title {
+    font-size: 1.6rem;
+  }
+}
