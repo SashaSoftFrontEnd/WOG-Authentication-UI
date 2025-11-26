@@ -67,7 +67,7 @@ const WogForm = () => {
                 formik.touched.name && !formik.errors.name && "label-success"
               )}
             >
-              Імʼя та Прізвище
+              Ведить імʼя
             </label>
 
             {/* CLEAR BUTTON */}
