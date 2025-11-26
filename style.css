@@ -1,0 +1,297 @@
+/* =========================
+      WOG BRAND VARIABLES
+      feat: добавлены брендовые переменные цветов, теней, радиусов и анимаций
+========================= */
+:root {
+  --wog-green: #009639;
+  --wog-green-dark: #006b2d;
+  --wog-lime: #c6d300;
+
+  --color-bg: #f4f4f4;
+  --color-black: #1b1b1b;
+  --color-white: #ffffff;
+
+  --color-error: #ff3b30;
+  --color-success: #2ecc71;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+
+  --transition-fast: 0.15s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.45s;
+
+  --shadow-soft: 0 4px 14px rgba(0,0,0,0.08);
+  --shadow-strong: 0 8px 30px rgba(0,0,0,0.14);
+}
+
+/* =========================
+      BASE
+      style: базовая типографика, фон и системные стили
+========================= */
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--color-bg);
+  color: var(--color-black);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* =========================
+      PAGE
+      feat: создан layout-центровщик + ограничение max-width
+========================= */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.page__container {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* =========================
+      REGISTRATION FORM
+      feat: создана UI-карта формы
+      ui: добавлена тень, скругления, hover-анимация
+========================= */
+.registration-form {
+  padding: 32px;
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow var(--transition-normal),
+              transform var(--transition-normal),
+              border var(--transition-normal);
+}
+
+.registration-form:hover {
+  /* ui: при наведении усиливаем тень и поднимаем форму */
+  box-shadow: var(--shadow-strong);
+  transform: translateY(-4px);
+  border-color: var(--wog-green);
+}
+
+/* ui: заголовок формы в фирменном стиле */
+.registration-form__title {
+  margin-bottom: 32px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--wog-green-dark);
+}
+
+/* =========================
+      BUTTON
+      feat: кнопка входа с градиентом
+      ui: hover-эффекты + анимация нажатия
+========================= */
+.registration-form__button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, var(--wog-green), var(--wog-lime));
+  color: var(--color-black);
+
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-normal),
+              background var(--transition-normal);
+}
+
+.registration-form__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+}
+
+.registration-form__button:active {
+  /* ux: реалистичное нажатие кнопки */
+  transform: translateY(0);
+}
+
+/* =========================
+      FOOTER
+      feat: низ формы с текстом и ссылкой
+========================= */
+.registration-form__footer {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.registration-form__link {
+  color: var(--wog-green-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.registration-form__link:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+      FORM FIELD
+      feat: создан компонент поля формы
+      ui: добавлена анимация рамки, фона, тени
+========================= */
+.form-field {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.form-field__input {
+  width: 400px;
+  padding: 16px 14px;
+  font-size: 1rem;
+  border: 2px solid #e5e5e5;
+  border-radius: var(--radius-sm);
+  background: #fafafa;
+
+  transition: border var(--transition-normal),
+              background var(--transition-normal),
+              box-shadow var(--transition-normal);
+}
+
+/* fix: скрываем placeholder для корректного float-label */
+.form-field__input::placeholder {
+  color: transparent;
+}
+
+/* ui: рамка слегка темнее при наведении */
+.form-field__input:hover:not(:focus) {
+  border-color: #ccc;
+}
+
+/* feat: состояние focus — зелёная рамка, белый фон, мягкая тень */
+.form-field__input:focus {
+  border-color: var(--wog-green);
+  background: var(--color-white);
+  box-shadow: 0 0 0 4px rgba(0,150,57,0.18);
+}
+
+/* =========================
+      FLOAT LABEL
+      feat: реализована анимация "плавающего" label
+      ui: плавный переход вверх при фокусе/заполнении
+========================= */
+.form-field__label--float {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #888;
+  pointer-events: none;
+
+  background: transparent;
+  padding: 0 6px;
+
+  transition: top var(--transition-slow),
+              font-size var(--transition-slow),
+              color var(--transition-slow),
+              transform var(--transition-slow),
+              background var(--transition-slow);
+}
+
+/* feat: label поднимается и уменьшается при фокусе */
+.form-field__input:focus + .form-field__label--float {
+  top: -9px;
+  font-size: 0.75rem;
+  color: var(--wog-green);
+  background: var(--color-white);
+}
+
+/* feat: label остается сверху при заполненном поле */
+.form-field__input:not(:placeholder-shown) + .form-field__label--float {
+  top: -9px;
+  font-size: 0.75rem;
+  background: var(--color-white);
+  color: #555;
+}
+
+/* =========================
+      SUCCESS STATE
+      feat: добавлена подсветка валидного поля
+========================= */
+.form-field__input:valid:not(:placeholder-shown) {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 4px rgba(46,204,113,0.2);
+}
+
+/* ui: label окрашивается в зелёный при success */
+.form-field__input:valid:not(:placeholder-shown)
+  + .form-field__label--float {
+  color: var(--color-success);
+}
+
+/* =========================
+      ERROR STATE
+      feat: ошибка ввода + анимация shake
+      ux: вывод текста ошибки
+========================= */
+.form-field__input:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 4px rgba(255,59,48,0.2);
+  animation: shake 0.25s ease-in-out;
+}
+
+/* ui: красный label при ошибке */
+.form-field__input:invalid:not(:focus):not(:placeholder-shown)
+  + .form-field__label--float {
+  color: var(--color-error);
+}
+
+/* feat: скрытая подсказка ошибки */
+.form-field__error {
+  display: none;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--color-error);
+}
+
+/* feat: показываем текст ошибки при невалидном поле */
+.form-field__input:invalid:not(:focus):not(:placeholder-shown)
+  ~ .form-field__error {
+  display: block;
+}
+
+/* =========================
+      SHAKE ERROR
+      feat: добавлена keyframe-анимация ошибки
+========================= */
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-4px); }
+  50%  { transform: translateX(4px); }
+  75%  { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+/* =========================
+      RESPONSIVE
+      feat: адаптация UI под мобилки
+========================= */
+@media (max-width: 480px) {
+  .registration-form {
+    padding: 22px;
+  }
+
+  .registration-form__title {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 400px) {
+  .form-field__input {
+    width: 100%;
+  }
+}
